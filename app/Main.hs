@@ -1,6 +1,6 @@
 module Main where
 
-import FFIDemo
+import FFI.Sin
 
 main :: IO ()
 main = do

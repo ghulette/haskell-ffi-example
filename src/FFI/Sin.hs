@@ -1,5 +1,5 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
-module FFIDemo where
+module FFI.Sin where
 
 import           Foreign
 import           Foreign.C.Types
