@@ -27,17 +27,6 @@ library:
   source-dirs: src
   extra-libraries: pcre
 
-executables:
-  ffi-demo-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - ffi-demo
-
 tests:
   ffi-demo-test:
     main:                Spec.hs
@@ -48,3 +37,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - ffi-demo
+    - tasty
+    - tasty-hunit

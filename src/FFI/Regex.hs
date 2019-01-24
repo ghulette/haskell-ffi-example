@@ -33,7 +33,8 @@ compile str opts = unsafePerformIO $
   BS.useAsCString str $ \cstr -> do
     alloca $ \errPtr -> do
       alloca $ \errOffset -> do
-        pcre_ptr <- c_pcre_compile cstr (combineOptions opts) errPtr errOffset nullPtr
+        let opt = combineOptions opts
+        pcre_ptr <- c_pcre_compile cstr opt errPtr errOffset nullPtr
         if pcre_ptr == nullPtr then do
           errCStr <- peek errPtr
           err <- peekCString errCStr

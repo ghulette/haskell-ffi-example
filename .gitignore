@@ -1,3 +1,4 @@
 .stack-work/
 ffi-demo.cabal
 *~
+/.dir-locals.el
