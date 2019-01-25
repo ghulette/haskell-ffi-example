@@ -16,3 +16,19 @@ newtype PCREOption = PCREOption { unPCREOption :: CInt }
 , dollarEndonly  = PCRE_DOLLAR_ENDONLY
 , dotall         = PCRE_DOTALL
 }
+
+newtype PCREExecOption = PCREExecOption { unPCREExecOption :: CInt }
+  deriving (Eq, Show)
+
+#{enum PCREExecOption, PCREExecOption
+, anchored = PCRE_ANCHORED
+, notEOL   = PCRE_NOTEOL
+}
+
+newtype PCREInfo = PCREInfo { unPCREInfo :: CInt }
+  deriving (Eq, Show)
+
+#{enum PCREInfo, PCREInfo
+, infoSize         = PCRE_INFO_SIZE
+, infoCaptureCount = PCRE_INFO_CAPTURECOUNT
+}

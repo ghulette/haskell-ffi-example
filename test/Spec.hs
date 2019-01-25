@@ -18,13 +18,23 @@ testCompileFail pat = testCase (BS.unpack pat) $ do
     Left _  -> return ()
     Right _ -> assertFailure $ "Unexpected success"
 
-unitTests = testGroup "Unit tests"
+testCapturedCount :: ByteString -> Int -> TestTree
+testCapturedCount pat expected = testCase (BS.unpack pat) $ do
+  case Regex.compile pat [] of
+    Left msg -> assertFailure msg
+    Right regex ->
+      assertEqual "captureCount" expected (Regex.capturedCount regex)
+
+compileTests = testGroup "Compile"
   [ testCompileOk "a.*b"
   , testCompileOk "a.*b[xy]+(foo?)"
-  , testCompileFail "*"
   ]
 
-tests = testGroup "Tests" [unitTests]
+failTests = testGroup "Expected failure" [testCompileFail "*"]
+
+capturedCountTests = testGroup "Captured count" [testCapturedCount "a.*b" 0]
+
+tests = testGroup "Tests" [compileTests, failTests, capturedCountTests]
 
 main :: IO ()
 main = defaultMain tests
